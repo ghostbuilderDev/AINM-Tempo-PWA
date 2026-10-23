@@ -10,29 +10,42 @@
    <a class="brand" href="#" aria-label="Accueil AINM Tempo"><img src="icon-192.png" alt=""><span><strong>AINM <em>Tempo</em></strong><small>Planning ferroviaire</small></span></a>
    <div class="sidebar-note"><span class="dot"></span> Version autonome <small>Stockage sur cet appareil</small></div>
    <nav aria-label="Navigation principale" id="navigation">
-    <button class="nav-btn active" data-view="tableau"><span>◫</span> Vue d’ensemble</button>
-    <button class="nav-btn" data-view="planning"><span>▦</span> Planning</button>
+    <button class="nav-btn" data-view="tableau"><span>◫</span> Vue d’ensemble</button>
+    <button class="nav-btn active" data-view="planning"><span>▦</span> Planning</button>
     <button class="nav-btn" data-view="chantiers"><span>▤</span> Chantiers</button>
     <button class="nav-btn" data-view="agents"><span>♙</span> Agents & encadrement</button>
     <button class="nav-btn" data-view="missions"><span>◇</span> Missions de sécurité</button>
     <button class="nav-btn" data-view="absences"><span>◷</span> Absences & repos</button>
     <button class="nav-btn" data-view="donnees"><span>⚙</span> Données & sauvegardes</button>
    </nav>
-   <div class="side-bottom"><div class="tiny">AINM Tempo • v2.0 autonome</div><div class="tiny">N’affecte pas le Journal de chantier</div></div>
+   <div class="side-bottom"><div class="tiny">AINM Tempo • v2.1 · Vue semaine couleurs</div><div class="tiny">N’affecte pas le Journal de chantier</div></div>
   </aside>
   <div class="content">
    <header class="topbar">
-    <div class="top-title"><button class="icon-btn menu-toggle" id="menuToggle" aria-label="Afficher le menu">☰</button><div><strong id="pageTitle">Vue d’ensemble</strong><div class="micro" id="pageSubtitle">Chantiers, équipes et vacations</div></div></div>
+    <div class="top-title"><button class="icon-btn menu-toggle" id="menuToggle" aria-label="Afficher le menu">☰</button><div><strong id="pageTitle">Planning</strong><div class="micro" id="pageSubtitle">Chantiers et agents · vue semaine</div></div></div>
     <div class="top-actions"><span class="connection" title="Les données ne sont pas synchronisées avec un serveur"><span class="dot"></span> Local</span><button class="btn btn-secondary mobile-hide" id="topImport">Importer JSON</button><button class="btn btn-primary" id="topCreate">＋ Vacation</button></div>
    </header>
    <main class="main">
-    <div class="privacy-banner" id="privacyBanner"><span class="privacy-icon">ⓘ</span><div><strong>Planning de travail local</strong><p>Les données nominatives restent sur cet appareil. L’import LAPLACE est une <b>prévision</b>, pas une habilitation confirmée. « Publier » rend la mission officielle <b>sur cet appareil uniquement</b>, sans notification aux agents.</p></div><button id="dismissPrivacy" class="icon-btn" aria-label="Masquer cet avertissement">×</button></div>
+    <div class="privacy-banner" id="privacyBanner"><span class="privacy-icon">ⓘ</span><div><strong>Planning de travail local</strong><p>Les données nominatives restent sur cet appareil. L’import LAPLACE est une <b>prévision</b>, pas une habilitation confirmée. « Publier » marque la mission <b>publiée localement</b>, sans diffusion ni notification aux autres agents.</p></div><button id="dismissPrivacy" class="icon-btn" aria-label="Masquer cet avertissement">×</button></div>
     <section id="viewRoot" aria-live="polite"></section>
    </main>
   </div>
 </div>
+<nav class="tempo-mobile-tabbar" aria-label="Navigation rapide">
+  <button data-view="planning" class="tempo-mobile-nav-btn"><span aria-hidden="true">▦</span>Planning</button>
+  <button data-view="chantiers" class="tempo-mobile-nav-btn"><span aria-hidden="true">▥</span>Chantiers</button>
+  <button data-view="agents" class="tempo-mobile-nav-btn"><span aria-hidden="true">♙</span>Agents</button>
+  <button data-view="absences" class="tempo-mobile-nav-btn"><span aria-hidden="true">◷</span>Absences</button>
+</nav>
 <div class="overlay" id="modal" hidden><div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><div class="modal-head"><h2 id="modalTitle">Nouvelle vacation</h2><button class="icon-btn" id="closeModal" aria-label="Fermer">✕</button></div><div id="modalContent"></div></div></div>
+<div id="weekSheet" class="tempo-sheet-wrap" hidden>
+  <div class="tempo-sheet-backdrop" data-sheet-close></div>
+  <section class="tempo-sheet" role="dialog" aria-modal="true" aria-labelledby="weekSheetTitle" tabindex="-1">
+    <div class="tempo-sheet-grip" aria-hidden="true"></div>
+    <div id="weekSheetBody"></div>
+  </section>
+</div>
 <div id="toasts" aria-live="polite" class="toast-holder"></div>
 <input type="file" id="hiddenFile" accept=".json,application/json" hidden>
-<script src="normalisation.js"></script><script src="app.js"></script>
+<script src="normalisation.js"></script><script src="planning-core.js"></script><script src="app.js"></script>
 </body></html>
